@@ -1,382 +1,536 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop from Dubai</title>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop from Dubai</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="favicon.png" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- AOS -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- AOS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<!-- ===== Splash Screen (الفاتحة) ===== -->
-<div id="splash">
-  <div class="splash-content">
-    <img src="./images/LOGO.png" alt="Shop from Dubai" class="splash-logo">
-    <h1 class="splash-title">Shop from Dubai</h1>
-    <div class="splash-loader"><span></span></div>
-    <p class="splash-sub">تسوق من دبي ... وصلنا لباب بيتك</p>
-  </div>
-</div>
-
-<!-- ===== Navbar ===== -->
-<nav id="navbar">
-  <div class="logo-box">
-    <img src="./images/LOGO.png" class="logo-img" alt="Logo">
-    <span class="logo-text">Shop from Dubai</span>
-  </div>
-
-  <div class="nav-links" id="navLinks">
-    <a href="#home">الرئيسية</a>
-    <span class="nav-sep"></span>
-    <a href="#products">منتجاتنا</a>
-    <span class="nav-sep"></span>
-    <a href="#about">من نحن</a>
-    <span class="nav-sep"></span>
-    <a href="#testimonials">آراء العملاء</a>
-    <span class="nav-sep"></span>
-    <a href="#contact">اتصل بنا</a>
-  </div>
-
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- ===== Hero Section ===== -->
-<section id="home" class="hero">
-  <div class="hero-particles">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-  <div class="hero-container">
-    <div class="hero-text">
-      <div class="hero-greeting-wrap">
-        <p class="hero-greeting">🇦🇪 مرحباً بك في</p>
-      </div>
-      <div class="hero-title-wrap">
-        <h1 class="hero-title">Shop from <span>Dubai</span></h1>
-      </div>
-      <p class="hero-desc">نشتري لك من دبي ونوصله لباب بيتك — أجود المنتجات الأصلية بأفضل الأسعار</p>
-
-      <div class="hero-btns">
-        <a href="#products" class="btn-primary">
-          تسوق الآن <i class="fas fa-arrow-left"></i>
-        </a>
-        <a href="https://wa.me/201143749737" target="_blank" class="btn-outline">
-          <i class="fab fa-whatsapp"></i> واتساب
-        </a>
-      </div>
-
-      <div class="hero-social">
-        <a href="https://www.facebook.com/share/1C2MzQPZ4N/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/dubai_inyourhand/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/201143749737" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.tiktok.com/@joudehab1" target="_blank"><svg viewBox="0 0 448 512" fill="currentColor" style="width:16px;height:18px"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg></a>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== Splash Screen (الفاتحة) ===== -->
+    <div id="splash">
+      <div class="splash-content">
+        <img
+          src="./images/LOGO.png"
+          alt="Shop from Dubai"
+          class="splash-logo"
+        />
+        <h1 class="splash-title">Shop from Dubai</h1>
+        <div class="splash-loader"><span></span></div>
+        <p class="splash-sub">تسوق من دبي ... وصلنا لباب بيتك</p>
       </div>
     </div>
 
-    <div class="hero-image">
-      <div class="hero-image-inner">
-        <img src="./images/unnamed (2).png" alt="Dubai Shopping">
-        <div class="hero-image-glow"></div>
+    <!-- ===== Navbar ===== -->
+    <nav id="navbar">
+      <div class="logo-box">
+        <img src="./images/LOGO.png" class="logo-img" alt="Logo" />
+        <span class="logo-text">Shop from Dubai</span>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ===== Products Section ===== -->
-<section id="products" class="products">
-  <div class="section-header" data-aos="fade-up">
-    <span class="section-badge">تسوق الآن</span>
-    <h2 class="section-title">منتجاتنا المختارة</h2>
-    <div class="section-divider"></div>
-    <p class="section-sub">أجود المنتجات الأصلية من دبي — نوفرها لك بأفضل الأسعار</p>
-  </div>
-
-  <div class="categories" data-aos="fade-up">
-    <button class="active" data-category="الكل">الكل</button>
-    <button data-category="أدوات مطبخ">أدوات مطبخ</button>
-    <button data-category="ديكور">ديكور</button>
-    <button data-category="منسوجات">منسوجات</button>
-    <button data-category="عطور">عطور</button>
-    <button data-category="أدوات حمام">أدوات حمام</button>
-    <button data-category="أدوات تنظيف">أدوات تنظيف</button>
-    <button data-category="Bath and Body Works">Bath &amp; Body</button>
-    <button data-category="بخور ومباخر">بخور ومباخر</button>
-  </div>
-
-  <!-- Loading skeleton -->
-  <div class="loader-container" id="loaderContainer">
-    <div class="loader-ring"></div>
-    <p>جاري تحميل المنتجات...</p>
-  </div>
-
-  <div class="products-grid" id="productsContainer"></div>
-</section>
-
-<!-- ===== Modal ===== -->
-<div id="productModal" class="modal">
-  <div class="modal-body">
-    <button class="modal-close">&times;</button>
-    <div class="modal-inner">
-      <div class="modal-img-box">
-        <img id="modalImage" alt="صورة المنتج">
+      <div class="nav-links" id="navLinks">
+        <a href="#home">الرئيسية</a>
+        <span class="nav-sep"></span>
+        <a href="#products">منتجاتنا</a>
+        <span class="nav-sep"></span>
+        <a href="#about">من نحن</a>
+        <span class="nav-sep"></span>
+        <a href="#testimonials">آراء العملاء</a>
+        <span class="nav-sep"></span>
+        <a href="#contact">اتصل بنا</a>
       </div>
-      <div class="modal-info">
-        <span id="modalBadge" class="modal-badge">أدوات مطبخ</span>
-        <h3 id="modalTitle">اسم المنتج</h3>
-        <p id="modalDescription">وصف المنتج</p>
-        <p id="modalFeatures" class="modal-features"><i class="fas fa-check-circle"></i> مميزات: ...</p>
-        <div class="modal-price-box">
-          <span id="modalPrice">0</span>
-          <span class="modal-currency">ج.م</span>
-        </div>
-        <a id="modalWhatsapp" target="_blank" class="btn-whatsapp">
-          <i class="fab fa-whatsapp"></i> شراء عبر واتساب
-        </a>
-        <div class="modal-gallery" id="modalGallery"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- ===== About Section ===== -->
-<section id="about" class="about">
-  <div class="about-bg"></div>
-  <div class="section-header" data-aos="fade-up">
-    <span class="section-badge">معلومات عنا</span>
-    <h2 class="section-title">من نحن</h2>
-    <div class="section-divider"></div>
-    <p class="section-sub">نشتري لك من دبي ونوصله لباب بيتك — بأقل الأسعار وأعلى جودة</p>
-  </div>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
 
-  <div class="about-content">
-    <div class="about-top" data-aos="fade-up">
-      <div class="about-image-box">
-        <img src="./images/unnamed (1).jpg" alt="Shop from Dubai" class="about-image">
-        <div class="about-image-badge">
-          <span>توصيل</span>
-          <strong>لباب البيت</strong>
-        </div>
+    <!-- ===== Hero Section ===== -->
+    <section id="home" class="hero">
+      <div class="hero-particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
       </div>
-      <div class="about-intro">
-        <h3>وسيطك الموثوق في دبي</h3>
-        <p>نحن <strong>Shop from Dubai</strong> — فريق متخصص في الشراء من دبي وتوصيل الطلبات لباب بيتك في مصر. نوفر لك منتجات أصلية من أفضل المتاجر بأقل الأسعار وأعلى جودة.</p>
-        <a href="#products" class="btn-primary" style="align-self: flex-start;">
-          تسوق الآن <i class="fas fa-arrow-left"></i>
-        </a>
-      </div>
-    </div>
-
-    <div class="about-features" data-aos="fade-up">
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="feature-icon"><i class="fas fa-plane"></i></div>
-        <h4>شحن مباشر من دبي</h4>
-        <p>من متاجر دبي إلى باب بيتك مباشرة</p>
-      </div>
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-        <h4>منتجات أصلية 100%</h4>
-        <p>نضمن الجودة والأصالة في كل منتج</p>
-      </div>
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="feature-icon"><i class="fas fa-truck"></i></div>
-        <h4>توصيل سريع وآمن</h4>
-        <p>نوصلك طلبك في أسرع وقت وأمان تام</p>
-      </div>
-      <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="feature-icon"><i class="fas fa-tags"></i></div>
-        <h4>أسعار تنافسية</h4>
-        <p>أفضل سعر مع خدمة شراء وتوصيل موثوقة</p>
-      </div>
-    </div>
-
-    <div class="about-steps" data-aos="fade-up">
-      <h3 class="about-steps-title">كيف نعمل؟</h3>
-      <div class="steps">
-        <div class="step" data-aos="fade-up" data-aos-delay="100">
-          <div class="step-icon"><i class="fas fa-search"></i></div>
-          <span class="step-num">01</span>
-          <h4>تطلب المنتج</h4>
-          <p>اختر اللي يعجبك أو ابعتلنا صورة اللي عايزه</p>
-        </div>
-        <div class="step-connector"><i class="fas fa-arrow-left"></i></div>
-        <div class="step" data-aos="fade-up" data-aos-delay="200">
-          <div class="step-icon"><i class="fas fa-shopping-bag"></i></div>
-          <span class="step-num">02</span>
-          <h4>نشتريه من دبي</h4>
-          <p>نشتري المنتج الأصلي من دبي ونفحصه</p>
-        </div>
-        <div class="step-connector"><i class="fas fa-arrow-left"></i></div>
-        <div class="step" data-aos="fade-up" data-aos-delay="300">
-          <div class="step-icon"><i class="fas fa-home"></i></div>
-          <span class="step-num">03</span>
-          <h4>نوصله لك</h4>
-          <p>نشحن المنتج إليك وتستلمه في مصر بأمان</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="about-stats" data-aos="fade-up">
-      <div class="stat">
-        <span class="stat-num">+50</span>
-        <span class="stat-label">منتج متنوع</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">دبي</span>
-        <span class="stat-label">مصدر المنتجات</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">لك</span>
-        <span class="stat-label">توصيل لباب البيت</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Testimonials Section ===== -->
-<section id="testimonials" class="testimonials">
-  <div class="section-header" data-aos="fade-up">
-    <span class="section-badge">عملاؤنا</span>
-    <h2 class="section-title">آراء العملاء</h2>
-    <div class="section-divider"></div>
-    <p class="section-sub">بعض من صور محادثات عملائنا معنا — ثقتهم هي أساس نجاحنا</p>
-  </div>
-
-  <div class="swipe-hint"><i class="fas fa-arrow-right"></i> اسحب لمشاهدة المزيد <i class="fas fa-arrow-left"></i></div>
-  <div class="testimonials-grid" id="testimonialsGrid" data-aos="fade-up"></div>
-</section>
-
-<!-- ===== Contact Section ===== -->
-<section id="contact" class="contact">
-  <div class="contact-shape"></div>
-  <div class="section-header" data-aos="fade-up">
-    <span class="section-badge">تواصل معنا</span>
-    <h2 class="section-title">اتصل بنا</h2>
-    <div class="section-divider"></div>
-    <p class="section-sub">تواصل معنا عبر واتساب أو أرسل رسالة وسنرد عليك فوراً</p>
-  </div>
-
-  <div class="contact-container">
-    <div class="contact-form-wrap" data-aos="fade-left">
-      <div class="contact-form-header">
-        <i class="fas fa-paper-plane"></i>
-        <h4>أرسل لنا رسالة</h4>
-        <p>سنتواصل معك في أقرب وقت ممكن</p>
-      </div>
-      <form id="contactForm" class="contact-form">
-        <div class="input-group">
-          <input type="text" id="contactName" placeholder="الاسم" required>
-        </div>
-        <div class="input-group">
-          <input type="tel" id="contactPhone" placeholder="رقم الهاتف" required>
-        </div>
-        <div class="input-group">
-          <textarea id="contactMessage" rows="4" placeholder="رسالتك" required></textarea>
-        </div>
-        <button type="submit"><i class="fab fa-whatsapp"></i> إرسال عبر واتساب</button>
-      </form>
-    </div>
-
-    <div class="contact-info-wrap" data-aos="fade-right">
-      <div class="contact-info-header">
-        <i class="fas fa-phone-alt"></i>
-        <h4>معلومات التواصل</h4>
-        <p>تواصل معنا عبر القنوات التالية</p>
-      </div>
-      <div class="contact-info">
-        <a href="https://wa.me/201143749737" target="_blank" class="contact-item" style="--i:0">
-          <div class="contact-icon-box whatsapp"><i class="fab fa-whatsapp"></i></div>
-          <div>
-            <span class="contact-label">واتساب</span>
-            <span class="contact-value">+20 114 374 9737</span>
+      <div class="hero-container">
+        <div class="hero-text">
+          <div class="hero-greeting-wrap">
+            <p class="hero-greeting">🇦🇪 مرحباً بك في</p>
           </div>
-        </a>
-        <a href="https://www.facebook.com/share/1C2MzQPZ4N/" target="_blank" class="contact-item" style="--i:1">
-          <div class="contact-icon-box facebook"><i class="fab fa-facebook-f"></i></div>
-          <div>
-            <span class="contact-label">فيسبوك</span>
-            <span class="contact-value">Shop from Dubai</span>
+          <div class="hero-title-wrap">
+            <h1 class="hero-title">Shop from <span>Dubai</span></h1>
           </div>
-        </a>
-        <a href="https://www.instagram.com/dubai_inyourhand/" target="_blank" class="contact-item" style="--i:2">
-          <div class="contact-icon-box instagram"><i class="fab fa-instagram"></i></div>
-          <div>
-            <span class="contact-label">انستغرام</span>
-            <span class="contact-value">@dubai_inyourhand</span>
+          <p class="hero-desc">
+            نشتري لك من دبي ونوصله لباب بيتك — أجود المنتجات الأصلية بأفضل
+            الأسعار
+          </p>
+
+          <div class="hero-btns">
+            <a href="#products" class="btn-primary">
+              تسوق الآن <i class="fas fa-arrow-left"></i>
+            </a>
+            <a
+              href="https://wa.me/201143749737"
+              target="_blank"
+              class="btn-outline"
+            >
+              <i class="fab fa-whatsapp"></i> واتساب
+            </a>
           </div>
-        </a>
-        <a href="https://www.tiktok.com/@joudehab1" target="_blank" class="contact-item" style="--i:3">
-          <div class="contact-icon-box tiktok"><svg viewBox="0 0 448 512" fill="currentColor" style="width:18px;height:20px"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg></div>
-          <div>
-            <span class="contact-label">تيك توك</span>
-            <span class="contact-value">@joudehab1</span>
+
+          <div class="hero-social">
+            <a href="https://www.facebook.com/share/1C2MzQPZ4N/" target="_blank"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/dubai_inyourhand/"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://wa.me/201143749737" target="_blank"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
+            <a href="https://www.tiktok.com/@joudehab1" target="_blank"
+              ><svg
+                viewBox="0 0 448 512"
+                fill="currentColor"
+                style="width: 16px; height: 18px"
+              >
+                <path
+                  d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"
+                /></svg
+            ></a>
           </div>
-        </a>
+        </div>
+
+        <div class="hero-image">
+          <div class="hero-image-inner">
+            <img src="./images/unnamed (2).png" alt="Dubai Shopping" />
+            <div class="hero-image-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Products Section ===== -->
+    <section id="products" class="products">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">تسوق الآن</span>
+        <h2 class="section-title">منتجاتنا المختارة</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">
+          أجود المنتجات الأصلية من دبي — نوفرها لك بأفضل الأسعار
+        </p>
+      </div>
+
+      <div class="categories" data-aos="fade-up">
+        <button class="active" data-category="الكل">الكل</button>
+        <button data-category="أدوات مطبخ">أدوات مطبخ</button>
+        <button data-category="ديكور">ديكور</button>
+        <button data-category="منسوجات">منسوجات</button>
+        <button data-category="عطور">عطور</button>
+        <button data-category="أدوات حمام">أدوات حمام</button>
+        <button data-category="أدوات تنظيف">أدوات تنظيف</button>
+        <button data-category="Bath and Body Works">Bath &amp; Body</button>
+        <button data-category="بخور ومباخر">بخور ومباخر</button>
+      </div>
+
+      <!-- Loading skeleton -->
+      <div class="loader-container" id="loaderContainer">
+        <div class="loader-ring"></div>
+        <p>جاري تحميل المنتجات...</p>
+      </div>
+
+      <div class="products-grid" id="productsContainer"></div>
+    </section>
+
+    <!-- ===== Modal ===== -->
+    <div id="productModal" class="modal">
+      <div class="modal-body">
+        <button class="modal-close">&times;</button>
+        <div class="modal-inner">
+          <div class="modal-img-box">
+            <img id="modalImage" alt="صورة المنتج" />
+          </div>
+          <div class="modal-info">
+            <span id="modalBadge" class="modal-badge">أدوات مطبخ</span>
+            <h3 id="modalTitle">اسم المنتج</h3>
+            <p id="modalDescription">وصف المنتج</p>
+            <p id="modalFeatures" class="modal-features">
+              <i class="fas fa-check-circle"></i> مميزات: ...
+            </p>
+            <div class="modal-price-box">
+              <span id="modalPrice">0</span>
+              <span class="modal-currency">ج.م</span>
+            </div>
+            <a id="modalWhatsapp" target="_blank" class="btn-whatsapp">
+              <i class="fab fa-whatsapp"></i> شراء عبر واتساب
+            </a>
+            <div class="modal-gallery" id="modalGallery"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ===== Floating WhatsApp ===== -->
-<a href="https://wa.me/201143749737" target="_blank" class="whatsapp-float" id="whatsappFloat">
-  <i class="fab fa-whatsapp"></i>
-</a>
+    <!-- ===== About Section ===== -->
+    <section id="about" class="about">
+      <div class="about-bg"></div>
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">معلومات عنا</span>
+        <h2 class="section-title">من نحن</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">
+          نشتري لك من دبي ونوصله لباب بيتك — بأقل الأسعار وأعلى جودة
+        </p>
+      </div>
 
-<!-- ===== Back to Top ===== -->
-<button class="back-top" id="backTop" title="عودة للأعلى">
-  <i class="fas fa-arrow-up"></i>
-</button>
+      <div class="about-content">
+        <div class="about-top" data-aos="fade-up">
+          <div class="about-image-box">
+            <img
+              src="./images/unnamed (1).jpg"
+              alt="Shop from Dubai"
+              class="about-image"
+            />
+            <div class="about-image-badge">
+              <span>توصيل</span>
+              <strong>لباب البيت</strong>
+            </div>
+          </div>
+          <div class="about-intro">
+            <h3>وسيطك الموثوق في دبي</h3>
+            <p>
+              نحن <strong>Shop from Dubai</strong> — فريق متخصص في الشراء من دبي
+              وتوصيل الطلبات لباب بيتك في مصر. نوفر لك منتجات أصلية من أفضل
+              المتاجر بأقل الأسعار وأعلى جودة.
+            </p>
+            <a
+              href="#products"
+              class="btn-primary"
+              style="align-self: flex-start"
+            >
+              تسوق الآن <i class="fas fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
 
-<!-- ===== Testimonial Lightbox ===== -->
-<div id="testimonialLightbox" class="testimonial-lightbox">
-  <button class="testimonial-lightbox-close">&times;</button>
-  <img id="testimonialLightboxImg" src="" alt="تقييم عميل">
-</div>
+        <div class="about-features" data-aos="fade-up">
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon"><i class="fas fa-plane"></i></div>
+            <h4>شحن مباشر من دبي</h4>
+            <p>من متاجر دبي إلى باب بيتك مباشرة</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>منتجات أصلية 100%</h4>
+            <p>نضمن الجودة والأصالة في كل منتج</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon"><i class="fas fa-truck"></i></div>
+            <h4>توصيل سريع وآمن</h4>
+            <p>نوصلك طلبك في أسرع وقت وأمان تام</p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-icon"><i class="fas fa-tags"></i></div>
+            <h4>أسعار تنافسية</h4>
+            <p>أفضل سعر مع خدمة شراء وتوصيل موثوقة</p>
+          </div>
+        </div>
 
-<!-- ===== Footer ===== -->
-<footer>
-  <div class="footer-content">
-    <div class="footer-brand">
-      <img src="./images/LOGO.png" alt="Logo">
-      <span>Shop from Dubai</span>
+        <div class="about-steps" data-aos="fade-up">
+          <h3 class="about-steps-title">كيف نعمل؟</h3>
+          <div class="steps">
+            <div class="step" data-aos="fade-up" data-aos-delay="100">
+              <div class="step-icon"><i class="fas fa-search"></i></div>
+              <span class="step-num">01</span>
+              <h4>تطلب المنتج</h4>
+              <p>اختر اللي يعجبك أو ابعتلنا صورة اللي عايزه</p>
+            </div>
+            <div class="step-connector"><i class="fas fa-arrow-left"></i></div>
+            <div class="step" data-aos="fade-up" data-aos-delay="200">
+              <div class="step-icon"><i class="fas fa-shopping-bag"></i></div>
+              <span class="step-num">02</span>
+              <h4>نشتريه من دبي</h4>
+              <p>نشتري المنتج الأصلي من دبي ونفحصه</p>
+            </div>
+            <div class="step-connector"><i class="fas fa-arrow-left"></i></div>
+            <div class="step" data-aos="fade-up" data-aos-delay="300">
+              <div class="step-icon"><i class="fas fa-home"></i></div>
+              <span class="step-num">03</span>
+              <h4>نوصله لك</h4>
+              <p>نشحن المنتج إليك وتستلمه في مصر بأمان</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-stats" data-aos="fade-up">
+          <div class="stat">
+            <span class="stat-num">+50</span>
+            <span class="stat-label">منتج متنوع</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">دبي</span>
+            <span class="stat-label">مصدر المنتجات</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">لك</span>
+            <span class="stat-label">توصيل لباب البيت</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonials Section ===== -->
+    <section id="testimonials" class="testimonials">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">عملاؤنا</span>
+        <h2 class="section-title">آراء العملاء</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">
+          بعض من صور محادثات عملائنا معنا — ثقتهم هي أساس نجاحنا
+        </p>
+      </div>
+
+      <div class="swipe-hint">
+        <i class="fas fa-arrow-right"></i> اسحب لمشاهدة المزيد
+        <i class="fas fa-arrow-left"></i>
+      </div>
+      <div
+        class="testimonials-grid"
+        id="testimonialsGrid"
+        data-aos="fade-up"
+      ></div>
+    </section>
+
+    <!-- ===== Contact Section ===== -->
+    <section id="contact" class="contact">
+      <div class="contact-shape"></div>
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-badge">تواصل معنا</span>
+        <h2 class="section-title">اتصل بنا</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">
+          تواصل معنا عبر واتساب أو أرسل رسالة وسنرد عليك فوراً
+        </p>
+      </div>
+
+      <div class="contact-container">
+        <div class="contact-form-wrap" data-aos="fade-left">
+          <div class="contact-form-header">
+            <i class="fas fa-paper-plane"></i>
+            <h4>أرسل لنا رسالة</h4>
+            <p>سنتواصل معك في أقرب وقت ممكن</p>
+          </div>
+          <form id="contactForm" class="contact-form">
+            <div class="input-group">
+              <input
+                type="text"
+                id="contactName"
+                placeholder="الاسم"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <input
+                type="tel"
+                id="contactPhone"
+                placeholder="رقم الهاتف"
+                required
+              />
+            </div>
+            <div class="input-group">
+              <textarea
+                id="contactMessage"
+                rows="4"
+                placeholder="رسالتك"
+                required
+              ></textarea>
+            </div>
+            <button type="submit">
+              <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
+            </button>
+          </form>
+        </div>
+
+        <div class="contact-info-wrap" data-aos="fade-right">
+          <div class="contact-info-header">
+            <i class="fas fa-phone-alt"></i>
+            <h4>معلومات التواصل</h4>
+            <p>تواصل معنا عبر القنوات التالية</p>
+          </div>
+          <div class="contact-info">
+            <a
+              href="https://wa.me/201143749737"
+              target="_blank"
+              class="contact-item"
+              style="--i: 0"
+            >
+              <div class="contact-icon-box whatsapp">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div>
+                <span class="contact-label">واتساب</span>
+                <span class="contact-value">+20 114 374 9737</span>
+              </div>
+            </a>
+            <a
+              href="https://www.facebook.com/share/1C2MzQPZ4N/"
+              target="_blank"
+              class="contact-item"
+              style="--i: 1"
+            >
+              <div class="contact-icon-box facebook">
+                <i class="fab fa-facebook-f"></i>
+              </div>
+              <div>
+                <span class="contact-label">فيسبوك</span>
+                <span class="contact-value">Shop from Dubai</span>
+              </div>
+            </a>
+            <a
+              href="https://www.instagram.com/dubai_inyourhand/"
+              target="_blank"
+              class="contact-item"
+              style="--i: 2"
+            >
+              <div class="contact-icon-box instagram">
+                <i class="fab fa-instagram"></i>
+              </div>
+              <div>
+                <span class="contact-label">انستغرام</span>
+                <span class="contact-value">@dubai_inyourhand</span>
+              </div>
+            </a>
+            <a
+              href="https://www.tiktok.com/@joudehab1"
+              target="_blank"
+              class="contact-item"
+              style="--i: 3"
+            >
+              <div class="contact-icon-box tiktok">
+                <svg
+                  viewBox="0 0 448 512"
+                  fill="currentColor"
+                  style="width: 18px; height: 20px"
+                >
+                  <path
+                    d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <span class="contact-label">تيك توك</span>
+                <span class="contact-value">@joudehab1</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Floating WhatsApp ===== -->
+    <a
+      href="https://wa.me/201143749737"
+      target="_blank"
+      class="whatsapp-float"
+      id="whatsappFloat"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ===== Back to Top ===== -->
+    <button class="back-top" id="backTop" title="عودة للأعلى">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== Testimonial Lightbox ===== -->
+    <div id="testimonialLightbox" class="testimonial-lightbox">
+      <button class="testimonial-lightbox-close">&times;</button>
+      <img id="testimonialLightboxImg" src="" alt="تقييم عميل" />
     </div>
-    <div class="footer-links">
-      <a href="#home">الرئيسية</a>
-      <a href="#products">منتجاتنا</a>
-      <a href="#about">من نحن</a>
-      <a href="#contact">اتصل بنا</a>
-    </div>
-    <div class="footer-social">
-      <a href="https://www.facebook.com/share/1C2MzQPZ4N/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/dubai_inyourhand/" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://wa.me/201143749737" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.tiktok.com/@joudehab1" target="_blank"><svg viewBox="0 0 448 512" fill="currentColor" style="width:16px;height:18px"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg></a>
-    </div>
-    <div class="footer-badge">
-      <svg width="40" height="40" viewBox="0 0 64 64">     
-        <circle cx="32" cy="32" r="29" fill="#0c1a2e" stroke="#c9a24a" stroke-width="1.5" />
-        <text x="32" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#c9a24a">M&amp;O</text>
-      </svg>
-      <span>Designed &amp; Developed by</span>
-    </div>
-  </div>
-</footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script src="script.js"></script>
-</body>
+    <!-- ===== Footer ===== -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="./images/LOGO.png" alt="Logo" />
+          <span>Shop from Dubai</span>
+        </div>
+        <div class="footer-links">
+          <a href="#home">الرئيسية</a>
+          <a href="#products">منتجاتنا</a>
+          <a href="#about">من نحن</a>
+          <a href="#contact">اتصل بنا</a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/share/1C2MzQPZ4N/" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com/dubai_inyourhand/" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://wa.me/201143749737" target="_blank"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+          <a href="https://www.tiktok.com/@joudehab1" target="_blank"
+            ><svg
+              viewBox="0 0 448 512"
+              fill="currentColor"
+              style="width: 16px; height: 18px"
+            >
+              <path
+                d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25v178.72A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0h88a121.18 121.18 0 0 0 1.86 22.17A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"
+              /></svg
+          ></a>
+        </div>
+        <div class="footer-badge">
+          <svg width="40" height="40" viewBox="0 0 64 64">
+            <circle
+              cx="32"
+              cy="32"
+              r="29"
+              fill="#0c1a2e"
+              stroke="#c9a24a"
+              stroke-width="1.5"
+            />
+            <text
+              x="32"
+              y="40"
+              text-anchor="middle"
+              font-family="Georgia, serif"
+              font-size="20"
+              fill="#c9a24a"
+            >
+              M&amp;O
+            </text>
+          </svg>
+          <span>Designed &amp; Developed by</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>

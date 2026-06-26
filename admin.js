@@ -9,16 +9,26 @@ function getAdminCache() {
     const raw = localStorage.getItem(ADMIN_CACHE_KEY);
     if (!raw) return null;
     const data = JSON.parse(raw);
-    if (Date.now() - data.ts > ADMIN_CACHE_DURATION) { localStorage.removeItem(ADMIN_CACHE_KEY); return null; }
+    if (Date.now() - data.ts > ADMIN_CACHE_DURATION) {
+      localStorage.removeItem(ADMIN_CACHE_KEY);
+      return null;
+    }
     return data;
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }
 
 function setAdminCache(data) {
-  try { localStorage.setItem(ADMIN_CACHE_KEY, JSON.stringify({ ts: Date.now(), ...data })); } catch (_) {}
+  try {
+    localStorage.setItem(
+      ADMIN_CACHE_KEY,
+      JSON.stringify({ ts: Date.now(), ...data }),
+    );
+  } catch (_) {}
 }
 
-document.getElementById("loginForm").addEventListener("submit", async e => {
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const user = document.getElementById("loginUser").value.trim();
   const pass = document.getElementById("loginPass").value.trim();
@@ -52,9 +62,11 @@ async function loadData() {
     const [pData, cData, rData] = await Promise.all([
       api.getProducts(),
       api.getCategories(),
-      api.getReviews()
+      api.getReviews(),
     ]);
-    products = (pData.products || pData.data || pData || []).map(normalizeProduct);
+    products = (pData.products || pData.data || pData || []).map(
+      normalizeProduct,
+    );
     categories = cData.categories || cData.data || cData || [];
     testimonials = rData.reviews || rData.data || rData || [];
     setAdminCache({ products, categories, reviews: testimonials });
@@ -68,7 +80,10 @@ async function uploadToCloudinary(file) {
   const fd = new FormData();
   fd.append("file", file);
   fd.append("upload_preset", "shop_preset");
-  const res = await fetch("https://api.cloudinary.com/v1_1/dw92smdvr/image/upload", { method: "POST", body: fd });
+  const res = await fetch(
+    "https://api.cloudinary.com/v1_1/dw92smdvr/image/upload",
+    { method: "POST", body: fd },
+  );
   const data = await res.json();
   return data.secure_url;
 }
@@ -81,27 +96,42 @@ function normalizeProduct(p) {
 }
 
 function renderCurrentPage() {
-  const name = document.querySelector(".sidebar-link.active")?.dataset.page || "dashboard";
+  const name =
+    document.querySelector(".sidebar-link.active")?.dataset.page || "dashboard";
   pages[name]?.();
 }
 
 function getCatName(id) {
   if (!id) return "";
-  const c = categories.find(x => x._id === id);
+  const c = categories.find((x) => x._id === id);
   return c ? c.name : id;
 }
 
 function getCatId(name) {
-  const c = categories.find(x => x.name === name);
+  const c = categories.find((x) => x.name === name);
   return c ? c._id : name;
 }
 
-const pages = { dashboard, products: productsPage, categories: categoriesPage, testimonials: testimonialsPage, settings };
+const pages = {
+  dashboard,
+  products: productsPage,
+  categories: categoriesPage,
+  testimonials: testimonialsPage,
+  settings,
+};
 
 function showPage(name) {
-  document.querySelectorAll(".sidebar-link").forEach(l => l.classList.remove("active"));
+  document
+    .querySelectorAll(".sidebar-link")
+    .forEach((l) => l.classList.remove("active"));
   document.querySelector(`[data-page="${name}"]`)?.classList.add("active");
-  const titles = { dashboard: "الإحصائيات", products: "المنتجات", categories: "الأقسام", testimonials: "آراء العملاء", settings: "الإعدادات" };
+  const titles = {
+    dashboard: "الإحصائيات",
+    products: "المنتجات",
+    categories: "الأقسام",
+    testimonials: "آراء العملاء",
+    settings: "الإعدادات",
+  };
   document.getElementById("pageTitle").textContent = titles[name] || name;
   document.getElementById("pageContent").innerHTML = "";
   pages[name]?.();
@@ -120,7 +150,10 @@ function setupNavigation() {
         settLink.classList.remove("sidebar-link", "sidebar-settings-link");
         settLink.className = "mobile-settings-btn";
         settLink.innerHTML = '<i class="fas fa-cog"></i>';
-        settLink.addEventListener("click", e => { e.preventDefault(); showPage("settings"); });
+        settLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          showPage("settings");
+        });
         document.body.appendChild(settLink);
       }
     }
@@ -128,8 +161,11 @@ function setupNavigation() {
     logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i>';
     document.body.appendChild(logoutBtn);
   }
-  document.querySelectorAll(".sidebar-link").forEach(link => {
-    link.addEventListener("click", e => { e.preventDefault(); showPage(link.dataset.page); });
+  document.querySelectorAll(".sidebar-link").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      showPage(link.dataset.page);
+    });
   });
   logoutBtn.addEventListener("click", () => {
     api.logout();
@@ -142,8 +178,10 @@ function setupNavigation() {
 function dashboard() {
   const total = products.length;
   const cats = categories.length;
-  const best = products.filter(p => p.isBest || p.best).length;
-  const avg = total ? Math.round(products.reduce((s, p) => s + (p.price || 0), 0) / total) : 0;
+  const best = products.filter((p) => p.isBest || p.best).length;
+  const avg = total
+    ? Math.round(products.reduce((s, p) => s + (p.price || 0), 0) / total)
+    : 0;
   const totalVal = products.reduce((s, p) => s + (p.price || 0), 0);
 
   document.getElementById("pageContent").innerHTML = `
@@ -180,10 +218,13 @@ function dashboard() {
     <div class="dash-charts">
       <div class="chart-card">
         <h3><i class="fas fa-chart-bar"></i>توزيع المنتجات حسب القسم</h3>
-        ${categories.map(c => {
-          const count = products.filter(p => (p.category === c._id || p.category === c.name)).length;
-          const pct = total ? Math.round(count / total * 100) : 0;
-          return `<div class="chart-bar-wrap">
+        ${categories
+          .map((c) => {
+            const count = products.filter(
+              (p) => p.category === c._id || p.category === c.name,
+            ).length;
+            const pct = total ? Math.round((count / total) * 100) : 0;
+            return `<div class="chart-bar-wrap">
             <div class="chart-bar-label">
               <span>${c.name}</span>
               <span>${count} (${pct}%)</span>
@@ -192,7 +233,8 @@ function dashboard() {
               <div class="chart-bar-fill" style="width:${pct}%"></div>
             </div>
           </div>`;
-        }).join("")}
+          })
+          .join("")}
       </div>
       <div class="chart-card">
         <h3><i class="fas fa-chart-simple"></i>مؤشرات سريعة</h3>
@@ -202,35 +244,35 @@ function dashboard() {
               <div class="quick-icon gold"><i class="fas fa-star"></i></div>
               <span class="label">أعلى سعر</span>
             </div>
-            <div class="value">${total ? Math.max(...products.map(p => p.price || 0)).toLocaleString('ar-EG') + ' ج.م' : '—'}</div>
+            <div class="value">${total ? Math.max(...products.map((p) => p.price || 0)).toLocaleString("ar-EG") + " ج.م" : "—"}</div>
           </div>
           <div class="quick-item">
             <div class="quick-item-top">
               <div class="quick-icon navy"><i class="fas fa-gem"></i></div>
               <span class="label">أقل سعر</span>
             </div>
-            <div class="value">${total ? Math.min(...products.map(p => p.price || 0)).toLocaleString('ar-EG') + ' ج.م' : '—'}</div>
+            <div class="value">${total ? Math.min(...products.map((p) => p.price || 0)).toLocaleString("ar-EG") + " ج.م" : "—"}</div>
           </div>
           <div class="quick-item">
             <div class="quick-item-top">
               <div class="quick-icon gold"><i class="fas fa-coins"></i></div>
               <span class="label">متوسط السعر</span>
             </div>
-            <div class="value">${avg.toLocaleString('ar-EG')} ج.م</div>
+            <div class="value">${avg.toLocaleString("ar-EG")} ج.م</div>
           </div>
           <div class="quick-item">
             <div class="quick-item-top">
               <div class="quick-icon navy"><i class="fas fa-cubes"></i></div>
               <span class="label">القيمة الإجمالية</span>
             </div>
-            <div class="value">${totalVal.toLocaleString('ar-EG')} ج.م</div>
+            <div class="value">${totalVal.toLocaleString("ar-EG")} ج.م</div>
           </div>
           <div class="quick-item" style="grid-column:1/-1">
             <div class="quick-item-top">
               <div class="quick-icon green"><i class="fas fa-crown"></i></div>
               <span class="label">نسبة الأكثر مبيعاً</span>
             </div>
-            <div class="value">${total ? Math.round(best/total*100) : 0}% من الإجمالي</div>
+            <div class="value">${total ? Math.round((best / total) * 100) : 0}% من الإجمالي</div>
           </div>
         </div>
       </div>
@@ -266,51 +308,61 @@ function renderProductsTable(list) {
           </tr>
         </thead>
         <tbody id="productsTbody">
-          ${list.map(p => {
-            const catName = getCatName(p.category);
-            const imgSrc = p.images && p.images.length > 0 ? (p.images[0]?.url || p.images[0]) : (typeof p.image === "object" ? p.image?.url : p.image || '');
-            const isActive = p.active !== false;
-            const isBest = p.isBest || p.best;
-            return `
+          ${list
+            .map((p) => {
+              const catName = getCatName(p.category);
+              const imgSrc =
+                p.images && p.images.length > 0
+                  ? p.images[0]?.url || p.images[0]
+                  : typeof p.image === "object"
+                    ? p.image?.url
+                    : p.image || "";
+              const isActive = p.active !== false;
+              const isBest = p.isBest || p.best;
+              return `
             <tr class="product-row" data-id="${p._id}">
               <td><img src="${imgSrc}" class="table-img" onerror="this.src='https://via.placeholder.com/40x40/f0ede8/ccc?text=X'"></td>
               <td style="font-weight:600">${p.name}</td>
-              <td>${(p.price || 0).toLocaleString('ar-EG')} ج.م</td>
+              <td>${(p.price || 0).toLocaleString("ar-EG")} ج.م</td>
               <td>${catName}</td>
-              <td><span class="badge-status ${isActive ? 'on' : 'off'}">${isActive ? 'ظاهر' : 'مخفي'}</span></td>
-              <td><span class="badge-best ${isBest ? '' : 'no'}">${isBest ? 'نعم' : 'لا'}</span></td>
+              <td><span class="badge-status ${isActive ? "on" : "off"}">${isActive ? "ظاهر" : "مخفي"}</span></td>
+              <td><span class="badge-best ${isBest ? "" : "no"}">${isBest ? "نعم" : "لا"}</span></td>
               <td>
                 <div class="table-actions">
-                  <button class="btn-toggle" data-id="${p._id}" title="${isActive ? 'إخفاء' : 'إظهار'}"><i class="fas ${isActive ? 'fa-eye' : 'fa-eye-slash'}"></i></button>
+                  <button class="btn-toggle" data-id="${p._id}" title="${isActive ? "إخفاء" : "إظهار"}"><i class="fas ${isActive ? "fa-eye" : "fa-eye-slash"}"></i></button>
                   <button class="btn-edit" data-id="${p._id}" title="تعديل"><i class="fas fa-pen"></i></button>
                   <button class="btn-delete" data-id="${p._id}" title="حذف"><i class="fas fa-trash"></i></button>
                 </div>
               </td>
             </tr>`;
-          }).join("")}
+            })
+            .join("")}
         </tbody>
       </table>
-      <div id="productsEmpty" class="empty-state" style="display:${list.length === 0 ? 'block' : 'none'}"><i class="fas fa-box-open"></i><p>لا توجد منتجات</p></div>
+      <div id="productsEmpty" class="empty-state" style="display:${list.length === 0 ? "block" : "none"}"><i class="fas fa-box-open"></i><p>لا توجد منتجات</p></div>
     </div>
   `;
 
-  document.getElementById("addProductBtn").addEventListener("click", () => openProductModal());
+  document
+    .getElementById("addProductBtn")
+    .addEventListener("click", () => openProductModal());
 
-  document.getElementById("searchInput").addEventListener("input", e => {
+  document.getElementById("searchInput").addEventListener("input", (e) => {
     const q = e.target.value.trim().toLowerCase();
     const rows = document.querySelectorAll("#productsTbody .product-row");
     let visible = 0;
-    rows.forEach(row => {
+    rows.forEach((row) => {
       const match = row.textContent.toLowerCase().includes(q);
       row.style.display = match ? "" : "none";
       if (match) visible++;
     });
-    document.getElementById("productsEmpty").style.display = visible === 0 ? "block" : "none";
+    document.getElementById("productsEmpty").style.display =
+      visible === 0 ? "block" : "none";
   });
 
-  content.querySelectorAll(".btn-toggle").forEach(btn => {
+  content.querySelectorAll(".btn-toggle").forEach((btn) => {
     btn.addEventListener("click", async () => {
-      const p = products.find(x => x._id === btn.dataset.id);
+      const p = products.find((x) => x._id === btn.dataset.id);
       if (!p) return;
       try {
         const fd = new FormData();
@@ -318,23 +370,27 @@ function renderProductsTable(list) {
         await api.updateProduct(p._id, fd);
         await loadData();
         renderProductsTable(products);
-      } catch (err) { alert("فشل التحديث: " + err.message); }
+      } catch (err) {
+        alert("فشل التحديث: " + err.message);
+      }
     });
   });
-  content.querySelectorAll(".btn-edit").forEach(btn => {
+  content.querySelectorAll(".btn-edit").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const p = products.find(x => x._id === btn.dataset.id);
+      const p = products.find((x) => x._id === btn.dataset.id);
       if (p) openProductModal(p);
     });
   });
-  content.querySelectorAll(".btn-delete").forEach(btn => {
+  content.querySelectorAll(".btn-delete").forEach((btn) => {
     btn.addEventListener("click", async () => {
       if (!confirm("هل انت متأكد من حذف هذا المنتج؟")) return;
       try {
         await api.deleteProduct(btn.dataset.id);
         await loadData();
         renderProductsTable(products);
-      } catch (err) { alert("فشل الحذف: " + err.message); }
+      } catch (err) {
+        alert("فشل الحذف: " + err.message);
+      }
     });
   });
 }
@@ -343,21 +399,29 @@ function openProductModal(product) {
   const edit = !!product;
   const overlay = document.createElement("div");
   overlay.className = "modal-overlay show";
-  const catHtml = categories.map(c => {
-    const selected = edit && (product.category === c._id || product.category === c.name);
-    return `<option value="${c._id}" ${selected ? "selected" : ""}>${c.name}</option>`;
-  }).join("");
-  const allImgs = edit && product.images && product.images.length > 0 ? product.images.map(i => i.url || i) : (product && product.image ? [product.image] : []);
+  const catHtml = categories
+    .map((c) => {
+      const selected =
+        edit && (product.category === c._id || product.category === c.name);
+      return `<option value="${c._id}" ${selected ? "selected" : ""}>${c.name}</option>`;
+    })
+    .join("");
+  const allImgs =
+    edit && product.images && product.images.length > 0
+      ? product.images.map((i) => i.url || i)
+      : product && product.image
+        ? [product.image]
+        : [];
   overlay.innerHTML = `
     <div class="modal-box">
       <h2>${edit ? "تعديل المنتج" : "اضافة منتج جديد"}</h2>
       <div class="form-group">
         <label>اسم المنتج</label>
-        <input type="text" id="modalName" value="${edit ? product.name : ''}">
+        <input type="text" id="modalName" value="${edit ? product.name : ""}">
       </div>
       <div class="form-group">
         <label>السعر (ج.م)</label>
-        <input type="number" id="modalPrice" value="${edit ? product.price : ''}">
+        <input type="number" id="modalPrice" value="${edit ? product.price : ""}">
       </div>
       <div class="form-group">
         <label>القسم</label>
@@ -365,21 +429,21 @@ function openProductModal(product) {
       </div>
       <div class="form-group">
         <label>وصف المنتج</label>
-        <textarea id="modalDesc">${edit ? (product.description || '') : ''}</textarea>
+        <textarea id="modalDesc">${edit ? product.description || "" : ""}</textarea>
       </div>
       <div class="form-group">
         <label>المميزات (مفصولة بفواصل)</label>
-        <input type="text" id="modalFeatures" value="${edit ? (Array.isArray(product.features) ? product.features.join("، ") : product.features || '') : ''}">
+        <input type="text" id="modalFeatures" value="${edit ? (Array.isArray(product.features) ? product.features.join("، ") : product.features || "") : ""}">
       </div>
       <div class="form-group">
         <label>الخصم (%)</label>
-        <input type="number" id="modalDiscount" value="${edit ? (product.discount || 0) : 0}">
+        <input type="number" id="modalDiscount" value="${edit ? product.discount || 0 : 0}">
       </div>
       <div class="form-group">
         <label>صور المنتج</label>
         <input type="file" id="modalImageInput" accept="image/*" multiple>
-        <div id="modalImagePreview" class="modal-preview-row" style="${allImgs.length ? '' : 'display:none'}" dir="ltr">
-          ${allImgs.map(src => `<img src="${src}" class="modal-preview-img">`).join("")}
+        <div id="modalImagePreview" class="modal-preview-row" style="${allImgs.length ? "" : "display:none"}" dir="ltr">
+          ${allImgs.map((src) => `<img src="${src}" class="modal-preview-img">`).join("")}
         </div>
       </div>
       <div class="form-group" style="display:flex;align-items:center;gap:8px">
@@ -394,8 +458,12 @@ function openProductModal(product) {
   `;
   document.body.appendChild(overlay);
 
-  document.getElementById("modalCancel").addEventListener("click", () => overlay.remove());
-  overlay.addEventListener("click", e => { if (e.target === overlay) overlay.remove(); });
+  document
+    .getElementById("modalCancel")
+    .addEventListener("click", () => overlay.remove());
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) overlay.remove();
+  });
 
   let imageFiles = [];
 
@@ -406,31 +474,53 @@ function openProductModal(product) {
         const max = 1200;
         let { width, height } = img;
         if (width > max || height > max) {
-          if (width > height) { height = (height / width) * max; width = max; }
-          else { width = (width / height) * max; height = max; }
+          if (width > height) {
+            height = (height / width) * max;
+            width = max;
+          } else {
+            width = (width / height) * max;
+            height = max;
+          }
         }
         const c = document.createElement("canvas");
-        c.width = width; c.height = height;
+        c.width = width;
+        c.height = height;
         c.getContext("2d").drawImage(img, 0, 0, width, height);
-        c.toBlob(b => resolve(new File([b], file.name.replace(/\.\w+$/, ".webp"), { type: "image/webp" })), "image/webp", 0.75);
+        c.toBlob(
+          (b) =>
+            resolve(
+              new File([b], file.name.replace(/\.\w+$/, ".webp"), {
+                type: "image/webp",
+              }),
+            ),
+          "image/webp",
+          0.75,
+        );
       };
       img.src = URL.createObjectURL(file);
     });
   }
 
-  document.getElementById("modalImageInput").addEventListener("change", async e => {
-    const files = Array.from(e.target.files);
-    imageFiles = await Promise.all(files.map(compressImage));
-    const preview = document.getElementById("modalImagePreview");
-    if (imageFiles.length > 0) {
-      preview.style.display = "flex";
-      preview.innerHTML = imageFiles.map(f => `<img src="${URL.createObjectURL(f)}" class="modal-preview-img">`).join("");
-    } else if (edit && product.images && product.images.length > 0) {
-      preview.style.display = "flex";
-    } else {
-      preview.style.display = "none";
-    }
-  });
+  document
+    .getElementById("modalImageInput")
+    .addEventListener("change", async (e) => {
+      const files = Array.from(e.target.files);
+      imageFiles = await Promise.all(files.map(compressImage));
+      const preview = document.getElementById("modalImagePreview");
+      if (imageFiles.length > 0) {
+        preview.style.display = "flex";
+        preview.innerHTML = imageFiles
+          .map(
+            (f) =>
+              `<img src="${URL.createObjectURL(f)}" class="modal-preview-img">`,
+          )
+          .join("");
+      } else if (edit && product.images && product.images.length > 0) {
+        preview.style.display = "flex";
+      } else {
+        preview.style.display = "none";
+      }
+    });
 
   document.getElementById("modalSave").addEventListener("click", async () => {
     const name = document.getElementById("modalName").value.trim();
@@ -438,22 +528,42 @@ function openProductModal(product) {
     const cat = document.getElementById("modalCategory").value;
     const desc = document.getElementById("modalDesc").value.trim();
     const features = document.getElementById("modalFeatures").value.trim();
-    const discount = parseFloat(document.getElementById("modalDiscount").value) || 0;
+    const discount =
+      parseFloat(document.getElementById("modalDiscount").value) || 0;
     const isBest = document.getElementById("modalBest").checked;
 
-    if (!name || (price !== 0 && !price)) { alert("الاسم والسعر مطلوبان"); return; }
+    if (!name || (price !== 0 && !price)) {
+      alert("الاسم والسعر مطلوبان");
+      return;
+    }
 
     try {
-      overlay.querySelector("h2").textContent = edit ? "جاري رفع الصور..." : "جاري رفع الصور...";
+      overlay.querySelector("h2").textContent = edit
+        ? "جاري رفع الصور..."
+        : "جاري رفع الصور...";
       let imageUrls = [];
       if (imageFiles.length > 0) {
-        const results = await Promise.all(imageFiles.map(async (file) => {
-          try { return await uploadToCloudinary(file); } catch (_) { return null; }
-        }));
+        const results = await Promise.all(
+          imageFiles.map(async (file) => {
+            try {
+              return await uploadToCloudinary(file);
+            } catch (_) {
+              return null;
+            }
+          }),
+        );
         imageUrls = results.filter(Boolean);
       }
 
-      const body = { name, price: Number(price), category: cat, description: desc, features: features || "[]", discount: Number(discount), isBest: isBest ? "true" : "false" };
+      const body = {
+        name,
+        price: Number(price),
+        category: cat,
+        description: desc,
+        features: features || "[]",
+        discount: Number(discount),
+        isBest: isBest ? "true" : "false",
+      };
       if (imageUrls.length > 0) body.imageUrls = imageUrls;
 
       if (edit) {
@@ -465,7 +575,9 @@ function openProductModal(product) {
       overlay.remove();
       await loadData();
       renderProductsTable(products);
-    } catch (err) { alert("فشل الحفظ: " + err.message); }
+    } catch (err) {
+      alert("فشل الحفظ: " + err.message);
+    }
   });
 }
 
@@ -481,15 +593,21 @@ function categoriesPage() {
       <button class="btn-add" id="addCatBtn"><i class="fas fa-plus"></i> اضافة</button>
     </div>
     <div class="cat-grid" id="catGrid">
-      ${categories.length > 0 ? categories.map(c => {
-        return `
+      ${
+        categories.length > 0
+          ? categories
+              .map((c) => {
+                return `
         <div class="cat-card">
           <button class="cat-card-del" data-id="${c._id}"><i class="fas fa-times"></i></button>
           <div class="cat-card-icon"><i class="fas fa-tag"></i></div>
           <div class="cat-card-name">${c.name}</div>
-          <div class="cat-card-count">${products.filter(p => p.category === c._id || p.category === c.name).length} منتج</div>
+          <div class="cat-card-count">${products.filter((p) => p.category === c._id || p.category === c.name).length} منتج</div>
         </div>`;
-      }).join("") : '<div class="cat-empty"><i class="fas fa-tags"></i><p>لا توجد أقسام بعد</p><span>أضف قسمك الأول</span></div>'}
+              })
+              .join("")
+          : '<div class="cat-empty"><i class="fas fa-tags"></i><p>لا توجد أقسام بعد</p><span>أضف قسمك الأول</span></div>'
+      }
     </div>
   `;
 
@@ -501,21 +619,28 @@ function categoriesPage() {
       document.getElementById("newCatInput").value = "";
       await loadData();
       categoriesPage();
-    } catch (err) { alert("فشل الإضافة: " + err.message); }
+    } catch (err) {
+      alert("فشل الإضافة: " + err.message);
+    }
   });
-  document.getElementById("newCatInput").addEventListener("keydown", e => {
+  document.getElementById("newCatInput").addEventListener("keydown", (e) => {
     if (e.key === "Enter") document.getElementById("addCatBtn").click();
   });
-  document.querySelectorAll(".cat-card-del").forEach(btn => {
+  document.querySelectorAll(".cat-card-del").forEach((btn) => {
     btn.addEventListener("click", async () => {
       const id = btn.dataset.id;
-      if (products.some(p => p.category === id)) { alert("لا يمكن حذف قسم مستخدم في منتجات"); return; }
+      if (products.some((p) => p.category === id)) {
+        alert("لا يمكن حذف قسم مستخدم في منتجات");
+        return;
+      }
       if (!confirm("حذف هذا القسم؟")) return;
       try {
         await api.deleteCategory(id);
         await loadData();
         categoriesPage();
-      } catch (err) { alert("فشل الحذف: " + err.message); }
+      } catch (err) {
+        alert("فشل الحذف: " + err.message);
+      }
     });
   });
 }
@@ -531,21 +656,27 @@ function testimonialsPage() {
       <label class="btn-add rev-upload-btn"><i class="fas fa-upload"></i> رفع صورة<input type="file" id="fileInput" accept="image/*" hidden></label>
     </div>
     <div class="rev-grid" id="revGrid">
-      ${testimonials.length > 0 ? testimonials.map((r, i) => {
-        const src = r.image?.url || r.image || r;
-        const id = r._id || i;
-        return `
+      ${
+        testimonials.length > 0
+          ? testimonials
+              .map((r, i) => {
+                const src = r.image?.url || r.image || r;
+                const id = r._id || i;
+                return `
         <div class="rev-card">
           <button class="rev-del" data-id="${id}"><i class="fas fa-times"></i></button>
           <div class="rev-img-wrap">
             <img src="${src}" onerror="this.classList.add('rev-broken')">
           </div>
         </div>`;
-      }).join("") : '<div class="cat-empty" style="grid-column:1/-1"><i class="fas fa-star"></i><p>لا توجد آراء بعد</p><span>أضف أول تقييم من الأعلى</span></div>'}
+              })
+              .join("")
+          : '<div class="cat-empty" style="grid-column:1/-1"><i class="fas fa-star"></i><p>لا توجد آراء بعد</p><span>أضف أول تقييم من الأعلى</span></div>'
+      }
     </div>
   `;
 
-  document.getElementById("fileInput").addEventListener("change", async e => {
+  document.getElementById("fileInput").addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (!file) return;
     const fd = new FormData();
@@ -554,29 +685,35 @@ function testimonialsPage() {
       await api.createReview(fd);
       await loadData();
       testimonialsPage();
-    } catch (err) { alert("فشل الرفع: " + err.message); }
+    } catch (err) {
+      alert("فشل الرفع: " + err.message);
+    }
     e.target.value = "";
   });
-  document.querySelectorAll(".rev-del").forEach(btn => {
+  document.querySelectorAll(".rev-del").forEach((btn) => {
     btn.addEventListener("click", async () => {
       if (!confirm("هل انت متأكد من حذف هذا الرأي؟")) return;
       try {
         await api.deleteReview(btn.dataset.id);
         await loadData();
         testimonialsPage();
-      } catch (err) { alert("فشل الحذف: " + err.message); }
+      } catch (err) {
+        alert("فشل الحذف: " + err.message);
+      }
     });
   });
   const lb = document.getElementById("adminLightbox");
   const lbImg = document.getElementById("adminLightboxImg");
-  document.querySelectorAll(".rev-card .rev-img-wrap img").forEach(img => {
+  document.querySelectorAll(".rev-card .rev-img-wrap img").forEach((img) => {
     img.addEventListener("click", () => {
       lbImg.src = img.src;
       lb.classList.add("show");
     });
   });
   lb.addEventListener("click", () => lb.classList.remove("show"));
-  document.querySelector(".admin-lightbox-close").addEventListener("click", () => lb.classList.remove("show"));
+  document
+    .querySelector(".admin-lightbox-close")
+    .addEventListener("click", () => lb.classList.remove("show"));
 }
 
 function getDefaultSocial() {
@@ -584,12 +721,17 @@ function getDefaultSocial() {
     whatsapp: "201143749737",
     facebook: "https://www.facebook.com/share/1C2MzQPZ4N/",
     instagram: "https://www.instagram.com/dubai_inyourhand/",
-    tiktok: "https://www.tiktok.com/@joudehab1"
+    tiktok: "https://www.tiktok.com/@joudehab1",
   };
 }
 function loadSocial() {
-  try { return JSON.parse(localStorage.getItem("admin_social")) || getDefaultSocial(); }
-  catch { return getDefaultSocial(); }
+  try {
+    return (
+      JSON.parse(localStorage.getItem("admin_social")) || getDefaultSocial()
+    );
+  } catch {
+    return getDefaultSocial();
+  }
 }
 function saveSocial(data) {
   localStorage.setItem("admin_social", JSON.stringify(data));
@@ -598,7 +740,7 @@ function saveSocial(data) {
 function settings() {
   const social = loadSocial();
   const total = products.length;
-  const best = products.filter(p => p.isBest || p.best).length;
+  const best = products.filter((p) => p.isBest || p.best).length;
 
   const content = document.getElementById("pageContent");
   content.innerHTML = `
@@ -762,9 +904,12 @@ function settings() {
       whatsapp: document.getElementById("socWhatsapp").value.trim(),
       facebook: document.getElementById("socFacebook").value.trim(),
       instagram: document.getElementById("socInstagram").value.trim(),
-      tiktok: document.getElementById("socTiktok").value.trim()
+      tiktok: document.getElementById("socTiktok").value.trim(),
     };
-    if (!data.whatsapp) { showSettMsg("socMsg", "رقم الواتساب مطلوب", false); return; }
+    if (!data.whatsapp) {
+      showSettMsg("socMsg", "رقم الواتساب مطلوب", false);
+      return;
+    }
     saveSocial(data);
     showSettMsg("socMsg", "تم حفظ الروابط بنجاح", true);
   });
@@ -777,9 +922,22 @@ function settings() {
     msg.className = "sett-msg";
     msg.innerHTML = "";
 
-    if (!oldPass || !newPass || !confirmPass) { showSettMsg("setMsg", "جميع الحقول مطلوبة", false); return; }
-    if (newPass.length < 6) { showSettMsg("setMsg", "كلمة المرور الجديدة يجب أن تكون 6 أحرف على الأقل", false); return; }
-    if (newPass !== confirmPass) { showSettMsg("setMsg", "كلمة المرور الجديدة غير متطابقة", false); return; }
+    if (!oldPass || !newPass || !confirmPass) {
+      showSettMsg("setMsg", "جميع الحقول مطلوبة", false);
+      return;
+    }
+    if (newPass.length < 6) {
+      showSettMsg(
+        "setMsg",
+        "كلمة المرور الجديدة يجب أن تكون 6 أحرف على الأقل",
+        false,
+      );
+      return;
+    }
+    if (newPass !== confirmPass) {
+      showSettMsg("setMsg", "كلمة المرور الجديدة غير متطابقة", false);
+      return;
+    }
 
     try {
       await api.updatePassword(oldPass, newPass, confirmPass);
@@ -796,8 +954,14 @@ function settings() {
     const curPass = document.getElementById("setOldEmail").value.trim();
     const newE = document.getElementById("setNewEmail").value.trim();
     const conf = document.getElementById("setConfirmEmail").value.trim();
-    if (!curPass || !newE || !conf) { showSettMsg("emailMsg", "جميع الحقول مطلوبة", false); return; }
-    if (newE !== conf) { showSettMsg("emailMsg", "البريد الإلكتروني غير متطابق", false); return; }
+    if (!curPass || !newE || !conf) {
+      showSettMsg("emailMsg", "جميع الحقول مطلوبة", false);
+      return;
+    }
+    if (newE !== conf) {
+      showSettMsg("emailMsg", "البريد الإلكتروني غير متطابق", false);
+      return;
+    }
 
     try {
       await api.updateEmail(curPass, newE, conf);
@@ -806,7 +970,11 @@ function settings() {
       document.getElementById("setNewEmail").value = "";
       document.getElementById("setConfirmEmail").value = "";
     } catch (err) {
-      showSettMsg("emailMsg", err.message || "فشل تغيير البريد الإلكتروني", false);
+      showSettMsg(
+        "emailMsg",
+        err.message || "فشل تغيير البريد الإلكتروني",
+        false,
+      );
     }
   });
 }
@@ -816,7 +984,7 @@ function toggleAcc(header) {
   const body = item.querySelector(".st-acc-body");
   const arrow = header.querySelector(".st-acc-arrow");
   const isOpen = item.classList.contains("open");
-  document.querySelectorAll(".st-acc-item.open").forEach(el => {
+  document.querySelectorAll(".st-acc-item.open").forEach((el) => {
     if (el !== item) {
       el.classList.remove("open");
       el.querySelector(".st-acc-arrow").style.transform = "rotate(0deg)";
@@ -834,10 +1002,13 @@ function toggleAcc(header) {
 function togglePass(btn) {
   const inp = btn.parentElement.querySelector("input");
   inp.type = inp.type === "password" ? "text" : "password";
-  btn.innerHTML = inp.type === "password" ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+  btn.innerHTML =
+    inp.type === "password"
+      ? '<i class="far fa-eye"></i>'
+      : '<i class="far fa-eye-slash"></i>';
 }
 
-document.addEventListener("input", function(e) {
+document.addEventListener("input", function (e) {
   if (e.target && e.target.id === "setNewPass") {
     const val = e.target.value;
     const bar = document.querySelector("#stStrength .st-strength-bar");
@@ -846,14 +1017,27 @@ document.addEventListener("input", function(e) {
     if (val.length >= 4) pct = 25;
     if (val.length >= 6) pct = 50;
     if (val.length >= 8 && /[A-Za-z]/.test(val) && /\d/.test(val)) pct = 75;
-    if (val.length >= 10 && /[A-Za-z]/.test(val) && /\d/.test(val) && /[^A-Za-z0-9]/.test(val)) pct = 100;
+    if (
+      val.length >= 10 &&
+      /[A-Za-z]/.test(val) &&
+      /\d/.test(val) &&
+      /[^A-Za-z0-9]/.test(val)
+    )
+      pct = 100;
     bar.style.width = pct + "%";
-    bar.style.background = pct < 50 ? "#e74c3c" : pct < 75 ? "#f39c12" : pct < 100 ? "#2ecc71" : "#27ae60";
+    bar.style.background =
+      pct < 50
+        ? "#e74c3c"
+        : pct < 75
+          ? "#f39c12"
+          : pct < 100
+            ? "#2ecc71"
+            : "#27ae60";
   }
 });
 
 function showSettMsg(id, text, success) {
   const el = document.getElementById(id);
   el.className = "sett-msg" + (success ? " success" : " error");
-  el.innerHTML = `<i class="fas ${success ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${text}`;
+  el.innerHTML = `<i class="fas ${success ? "fa-check-circle" : "fa-exclamation-circle"}"></i> ${text}`;
 }
