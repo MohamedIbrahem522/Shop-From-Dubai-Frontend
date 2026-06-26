@@ -1691,7 +1691,7 @@ footer p {
   .product-card { border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
   .product-card-img-wrap { height: 130px; }
   .product-card-img { padding: 12px; }
-  .product-card-body { padding: 10px 12px 12px; gap: 2px; }
+  .product-card-body { padding: 10px 12px 12px; gap: 2px; min-height: 110px; }
   .product-card-body h3 { font-size: 0.78rem; margin-bottom: 2px; line-height: 1.3; }
   .product-card-category { font-size: 0.6rem; margin-bottom: 4px; }
   .product-card-price { font-size: 0.85rem; margin-bottom: 8px; }
@@ -1785,7 +1785,7 @@ footer p {
   .btn-whatsapp { font-size: 0.75rem; padding: 10px; }
   .modal-gallery img { width: 38px; height: 38px; }
   .product-card-img-wrap { height: 100px; }
-  .product-card-body { padding: 8px 10px 10px; }
+  .product-card-body { padding: 8px 10px 10px; min-height: 100px; }
   .product-card-body h3 { font-size: 0.72rem; }
   .product-card-category { font-size: 0.55rem; margin-bottom: 2px; }
   .product-card-price { font-size: 0.78rem; margin-bottom: 6px; }
