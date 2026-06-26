@@ -230,7 +230,7 @@ function renderProducts(products) {
         <div class="product-card-category">${p.category}</div>
         <div class="product-card-price">${p.price.toLocaleString('ar-EG')} <span class="currency">ج.م</span></div>
         <button class="product-card-btn" data-id="${p.id}">
-          عرض التفاصيل والشراء <i class="fas fa-arrow-left"></i>
+          اشتري <i class="fas fa-arrow-left"></i>
         </button>
       </div>
     </div>
