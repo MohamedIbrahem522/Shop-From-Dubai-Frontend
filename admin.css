@@ -1634,7 +1634,7 @@ tr:hover td { background: #fcfaf7; }
   .stat-side { width: 36px; }
   .stat-icon { width: 20px; height: 20px; font-size: 0.55rem; border-radius: 6px; }
   .stat-body { padding: 10px 8px 10px 0; }
-  .stat-body h3 { font-size: 0.9rem; }
+  .stat-body h3 { font-size: 1.25rem; }
   .stat-body p { font-size: 0.5rem; }
   .chart-card {
     padding: 18px 16px;
@@ -1645,7 +1645,8 @@ tr:hover td { background: #fcfaf7; }
   .chart-bar-track { height: 5px; }
   .quick-grid { grid-template-columns: 1fr; gap: 8px; }
   .quick-item { padding: 12px 14px; border-radius: 12px; }
-  .quick-item .value { font-size: 0.85rem; padding-right: 36px; }
+  .quick-item .value { font-size: 0.72rem; padding-right: 36px; }
+  .quick-item .label { font-size: 0.6rem; }
 
   /* ── Table → cards ── */
   .table-card { border-radius: 16px; overflow: visible; background: transparent; border: none; box-shadow: none; }
