@@ -1822,12 +1822,29 @@ tr:hover td { background: #fcfaf7; }
   .rev-upload-btn { padding: 14px 24px; font-size: 0.82rem; border-radius: 14px; }
   .rev-del { width: 28px; height: 28px; font-size: 0.6rem; top: 8px; left: 8px; opacity: 1; backdrop-filter: none; background: rgba(0,0,0,0.3); }
 }
-@media (max-width: 400px) {
+@media (max-width: 420px) {
   .product-row { padding: 8px 10px; gap: 4px; }
-  .product-row td:nth-child(2) { font-size: 0.72rem; width: 100%; flex: none; margin-bottom: 2px; }
-  .product-row td:nth-child(3) { font-size: 0.65rem; }
+  .product-row td:nth-child(2) { font-size: 0.7rem; }
+  .product-row td:nth-child(3) { font-size: 0.6rem; }
   .product-row td:nth-child(4) { display: none; }
-  .product-row td:nth-child(5) { }
-  .table-img { width: 34px; height: 34px; }
-  .table-actions button { width: 24px; height: 24px; font-size: 0.48rem; }
+  .product-row td:nth-child(6) { display: none; }
+  .product-row td:nth-child(7) { margin-right: auto; }
+  .table-img { width: 34px; height: 34px; border-width: 1px; }
+  .table-actions button { width: 24px; height: 24px; font-size: 0.42rem; }
+  .badge-status { font-size: 0.42rem; padding: 1px 6px; }
+  .btn-add { padding: 6px 10px; font-size: 0.58rem; }
+  .search-box input { padding: 6px 8px 6px 26px; font-size: 0.6rem; }
+  .search-box i { left: 8px; font-size: 0.6rem; }
+  .stat-side { width: 22px; }
+  .stat-icon { width: 14px; height: 14px; font-size: 0.38rem; }
+  .stat-body { padding: 6px 4px; }
+  .stat-body h3 { font-size: 0.68rem; }
+  .stat-body p { display: none; }
+  .dash-welcome { padding: 10px 12px; }
+  .dash-welcome-text h2 { font-size: 0.65rem; }
+  .dash-welcome-badge { font-size: 0.4rem; padding: 2px 8px; }
+  .sidebar-link { padding: 4px 2px; font-size: 0.42rem; }
+  .sidebar-link i { font-size: 0.85rem; }
+  .sidebar-view-site { font-size: 0.42rem; }
+  .sidebar-view-site i { font-size: 0.85rem; }
 }
