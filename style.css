@@ -1698,8 +1698,8 @@ footer p {
   .product-card-price .currency { font-size: 0.6rem; }
   .product-card-btn { padding: 6px 14px; font-size: 0.6rem; gap: 4px; border-radius: 20px; width: auto; align-self: center; }
   .product-card-badge { font-size: 0.45rem; padding: 2px 8px; top: 6px; right: 6px; }
-  .modal { padding: 20px 32px; align-items: center; }
-  .modal-body { padding: 0; max-height: 92vh; overflow-y: auto; border-radius: 28px; background: #fff; }
+  .modal { padding: 12px; align-items: center; }
+  .modal-body { padding: 0; max-height: 94vh; overflow-y: auto; border-radius: 18px; background: #fff; }
   .modal-inner { gap: 0; flex-direction: column; }
   .modal-img-box { flex: none; width: 100%; background: linear-gradient(135deg, #f8f4ec, #efe7d8); padding: 24px 24px 16px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(214,179,124,0.08); }
   .modal-img-box img { height: 280px; width: auto; max-width: 100%; object-fit: contain; border-radius: 0; padding: 0; }
