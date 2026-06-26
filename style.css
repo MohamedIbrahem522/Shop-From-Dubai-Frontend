@@ -1787,9 +1787,9 @@ footer p {
   .product-card-img-wrap { height: 140px; }
   .product-card-img { padding: 8px; }
   .product-card-body { padding: 8px 10px 10px; min-height: 100px; }
-  .product-card-body h3 { font-size: 0.72rem; }
-  .product-card-category { font-size: 0.55rem; margin-bottom: 2px; }
-  .product-card-price { font-size: 0.78rem; margin-bottom: 6px; }
+  .product-card-body h3 { font-size: 0.78rem; }
+  .product-card-category { font-size: 0.6rem; margin-bottom: 2px; }
+  .product-card-price { font-size: 0.85rem; margin-bottom: 6px; }
   .product-card-btn { padding: 9px 12px; font-size: 0.4rem; gap: 2px; border-radius: 18px; width: 100%; display: flex; align-items: center; justify-content: center; margin-top: auto; white-space: nowrap; }
   .products-grid { gap: 4px; }
   .about-image-box { max-width: 220px; }
