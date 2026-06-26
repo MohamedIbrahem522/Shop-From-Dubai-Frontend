@@ -412,7 +412,7 @@ function openProductModal(product) {
         const c = document.createElement("canvas");
         c.width = width; c.height = height;
         c.getContext("2d").drawImage(img, 0, 0, width, height);
-        c.toBlob(b => resolve(new File([b], file.name, { type: "image/jpeg" })), "image/jpeg", 0.8);
+        c.toBlob(b => resolve(new File([b], file.name.replace(/\.\w+$/, ".webp"), { type: "image/webp" })), "image/webp", 0.75);
       };
       img.src = URL.createObjectURL(file);
     });
