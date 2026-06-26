@@ -1645,7 +1645,7 @@ tr:hover td { background: #fcfaf7; }
   .chart-bar-track { height: 5px; }
   .quick-grid { grid-template-columns: 1fr; gap: 8px; }
   .quick-item { padding: 12px 14px; border-radius: 12px; }
-  .quick-item .value { font-size: 0.72rem; padding-right: 36px; }
+  .quick-item .value { font-size: 0.65rem; padding-right: 36px; }
   .quick-item .label { font-size: 0.6rem; }
 
   /* ── Table → cards ── */
