@@ -5,6 +5,8 @@ Storefront for **Shop From Dubai**, an Arabic (RTL) online store I built as a fr
 **Live site:** https://shop-from-dubai-frontend.pages.dev/
 **Backend repo:** https://github.com/MohamedIbrahem522/Shop-From-Dubai-Backend
 
+![Shop From Dubai home page](1-home.png)
+
 ## Features
 
 - Arabic right-to-left layout, mobile friendly
