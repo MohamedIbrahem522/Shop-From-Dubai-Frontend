@@ -863,6 +863,27 @@ section {
   padding: 40px 0;
 }
 
+/* Product page link inside the modal */
+.modal-product-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-family: "Tajawal", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b8935a;
+  text-decoration: none;
+  border: 1px solid rgba(184, 147, 90, 0.45);
+  border-radius: 30px;
+  padding: 9px 18px;
+  transition: all 0.3s ease;
+}
+.modal-product-link:hover {
+  background: #f7f1e6;
+  border-color: #b8935a;
+}
+
 /* Loader */
 .loader-container {
   text-align: center;
@@ -3034,4 +3055,4 @@ footer p {
     font-size: 1rem;
     gap: 12px;
   }
-  }
+}
