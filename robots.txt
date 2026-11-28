@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shop-from-dubai-frontend.pages.dev/sitemap.xml
