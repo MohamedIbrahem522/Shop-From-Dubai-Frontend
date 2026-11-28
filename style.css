@@ -835,6 +835,12 @@ section {
 .product-search input::placeholder {
   color: #9aa3ad;
 }
+.product-search input[type="search"]::-webkit-search-cancel-button,
+.product-search input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
 .product-search .search-clear {
   border: 0;
   background: transparent;
@@ -3028,4 +3034,4 @@ footer p {
     font-size: 1rem;
     gap: 12px;
   }
-}
+  }
