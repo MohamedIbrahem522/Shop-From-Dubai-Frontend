@@ -3104,3 +3104,25 @@ footer p {
     margin: -8px auto 34px;
   }
 }
+
+
+/* ===== Mobile fix: card button text fits, titles wrap fully ===== */
+@media (max-width: 768px) {
+  .product-card-body h3 {
+    flex-shrink: 0;
+    overflow: visible;
+    height: auto;
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .product-card-btn {
+    white-space: normal;
+    font-size: 0.66rem;
+    padding: 8px 6px;
+    gap: 5px;
+    line-height: 1.3;
+    text-align: center;
+    min-height: 46px;
+    flex-shrink: 0;
+  }
+}
