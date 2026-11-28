@@ -441,7 +441,8 @@ function openProductModal(product) {
       </div>
       <div class="form-group">
         <label>صور المنتج</label>
-        <input type="file" id="modalImageInput" accept="image/*" multiple>
+        <label class="file-pick" for="modalImageInput"><span class="file-pick-btn">اختر الصور</span><span class="file-pick-name" id="modalImageName">لم يتم اختيار ملفات</span></label>
+        <input type="file" id="modalImageInput" accept="image/*" multiple hidden>
         <div id="modalImagePreview" class="modal-preview-row" style="${allImgs.length ? "" : "display:none"}" dir="ltr">
           ${allImgs.map((src) => `<img src="${src}" class="modal-preview-img">`).join("")}
         </div>
@@ -505,6 +506,11 @@ function openProductModal(product) {
     .getElementById("modalImageInput")
     .addEventListener("change", async (e) => {
       const files = Array.from(e.target.files);
+      document.getElementById("modalImageName").textContent = files.length
+        ? files.length === 1
+          ? files[0].name
+          : files.length + " صور مختارة"
+        : "لم يتم اختيار ملفات";
       imageFiles = await Promise.all(files.map(compressImage));
       const preview = document.getElementById("modalImagePreview");
       if (imageFiles.length > 0) {
@@ -1041,3 +1047,36 @@ function showSettMsg(id, text, success) {
   el.className = "sett-msg" + (success ? " success" : " error");
   el.innerHTML = `<i class="fas ${success ? "fa-check-circle" : "fa-exclamation-circle"}"></i> ${text}`;
 }
+
+/* Resume a recent login after reload: token must be unexpired (server 7 days),
+   logged in within the last 12 hours, and any 401 from the API logs out. */
+const ADMIN_SESSION_MAX_MS = 12 * 60 * 60 * 1000;
+
+function showLogin() {
+  document.getElementById("adminApp").style.display = "none";
+  document.getElementById("loginOverlay").style.display = "flex";
+}
+
+window.addEventListener("sfd-auth-expired", showLogin);
+
+(function resumeSession() {
+  const token = localStorage.getItem("api_token");
+  const at = Number(localStorage.getItem("api_login_at")) || 0;
+  let valid = false;
+  try {
+    const payload = JSON.parse(
+      atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")),
+    );
+    valid =
+      payload.exp * 1000 > Date.now() &&
+      at > 0 &&
+      Date.now() - at < ADMIN_SESSION_MAX_MS;
+  } catch (_) {}
+  if (!valid) {
+    api.clearSession();
+    return;
+  }
+  document.getElementById("loginOverlay").style.display = "none";
+  document.getElementById("adminApp").style.display = "flex";
+  initApp();
+})();
