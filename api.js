@@ -30,10 +30,6 @@ class API {
     }
     const res = await fetch(`${this.baseURL}${path}`, opts);
     const data = await res.json();
-    if (res.status === 401 && this.token && path !== "/admin/auth/login") {
-      this.clearSession();
-      window.dispatchEvent(new Event("sfd-auth-expired"));
-    }
     if (!res.ok)
       throw new Error(data.message || data.error || "Request failed");
     return data;
@@ -52,7 +48,6 @@ class API {
     if (data.token) {
       this.token = data.token;
       localStorage.setItem("api_token", data.token);
-      localStorage.setItem("api_login_at", String(Date.now()));
     }
     return data;
   }
@@ -60,12 +55,8 @@ class API {
     try {
       await this.request("POST", "/admin/auth/logout");
     } catch (_) {}
-    this.clearSession();
-  }
-  clearSession() {
     this.token = null;
     localStorage.removeItem("api_token");
-    localStorage.removeItem("api_login_at");
   }
   updatePassword(currentPassword, newPassword, confirmPassword) {
     return this.request("PUT", "/admin/account/password", {
