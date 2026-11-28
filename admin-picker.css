@@ -1,0 +1,38 @@
+/* ===== Arabic file picker for product images ===== */
+.form-group label.file-pick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1.5px dashed #d5c9b8;
+  border-radius: 14px;
+  background: #fcfaf7;
+  color: #7a6a58;
+  font-family: "Tajawal", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+.form-group label.file-pick:hover {
+  border-color: #b8935a;
+  background: #fff;
+}
+.file-pick-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #d4af37, #b8935a);
+  color: #0a1b2d;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.file-pick-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
