@@ -135,7 +135,7 @@ const modalClose = document.querySelector(".modal-close");
   try {
     const [pRes, cRes, rRes] = await Promise.all([
       fetch(
-        "https://shop-from-dubai-backend-production.up.railway.app/products",
+        "https://shop-from-dubai-backend-production.up.railway.app/products?limit=100",
       ),
       fetch(
         "https://shop-from-dubai-backend-production.up.railway.app/categories",
@@ -243,7 +243,7 @@ document.addEventListener("visibilitychange", () => {
   if (document.hidden || isFetching) return;
   isFetching = true;
   Promise.all([
-    fetch("https://shop-from-dubai-backend-production.up.railway.app/products"),
+    fetch("https://shop-from-dubai-backend-production.up.railway.app/products?limit=100"),
     fetch("https://shop-from-dubai-backend-production.up.railway.app/reviews"),
   ])
     .then(async ([pRes, rRes]) => {
