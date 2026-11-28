@@ -103,7 +103,7 @@ ${image ? `<meta name="twitter:image" content="${esc(image)}" />` : ""}
   .cta { display:flex; flex-direction:column; gap:12px; margin-top:6px; }
   .cta .btn { width:100%; justify-content:center; padding:16px 22px; font-size:1rem; }
   .cta .btn.alt { background:var(--ink); color:#edd8b3; box-shadow:none; margin-inline-start:0; }
-  @media (min-width:761px){ .cta { flex-direction:row; } .cta .btn { flex:1 1 0; width:auto; } }
+  @media (min-width:761px){ .cta { flex-direction:row; } .cta .btn { flex:1 1 0; width:auto; font-size:.85rem; padding:15px 10px; white-space:nowrap; } }
   footer { text-align:center; color:#7b8794; font-size:.8rem; padding:24px 0 40px; }
 </style>
 </head>
