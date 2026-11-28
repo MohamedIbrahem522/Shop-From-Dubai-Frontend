@@ -127,6 +127,7 @@ const modalClose = document.querySelector(".modal-close");
   const cache = getCache();
   if (cache) {
     allProducts = cache.products || [];
+    updateProductStat();
     applyFilters();
     renderCategories(cache.categories);
     renderTestimonials(cache.reviews);
@@ -156,6 +157,7 @@ const modalClose = document.querySelector(".modal-close");
     allProducts = (pData.products || pData.data || pData || [])
       .map((p) => ({
         id: p._id,
+        slug: p.slug || p._id,
         name: p.name,
         price: p.price,
         category:
@@ -179,6 +181,7 @@ const modalClose = document.querySelector(".modal-close");
       .filter((p) => p.active);
 
     setCache({ products: allProducts, categories: cats, reviews });
+    updateProductStat();
     applyFilters();
     renderCategories(cats);
     renderTestimonials(reviews);
@@ -248,6 +251,7 @@ document.addEventListener("visibilitychange", () => {
       const d = await pRes.json();
       const fresh = (d.products || d.data || d || []).map((p) => ({
         id: p._id,
+        slug: p.slug || p._id,
         name: p.name,
         price: p.price,
         category: allProducts.find((a) => a.id === p._id)?.category || "",
@@ -288,6 +292,12 @@ document.addEventListener("visibilitychange", () => {
       isFetching = false;
     });
 });
+
+// ===== Product count stat =====
+function updateProductStat() {
+  const el = document.getElementById("statProducts");
+  if (el && allProducts.length) el.textContent = String(allProducts.length);
+}
 
 // ===== Search & Filters =====
 function normalizeAr(text) {
@@ -388,13 +398,23 @@ function openModal(product) {
   modalTitle.textContent = product.name;
   modalBadge.textContent = product.category;
   modalDesc.textContent = product.description || "منتج أصلي مستورد من دبي.";
-  modalFeatures.innerHTML = `<i class="fas fa-check-circle"></i> ${product.features || "لا توجد مميزات إضافية"}`;
+  const feat = String(product.features || "").trim();
+  if (feat) {
+    modalFeatures.innerHTML = `<i class="fas fa-check-circle"></i> ${feat}`;
+    modalFeatures.style.display = "";
+  } else {
+    modalFeatures.innerHTML = "";
+    modalFeatures.style.display = "none";
+  }
   modalPrice.textContent = product.price.toLocaleString("ar-EG");
 
   const wa = getSocial().whatsapp || "201143749737";
   modalWhatsapp.href = `https://wa.me/${wa}?text=${encodeURIComponent(
     `أريد شراء ${product.name} بسعر ${product.price.toLocaleString("ar-EG")} جنيه مصري`,
   )}`;
+
+  const link = document.getElementById("modalProductLink");
+  if (link) link.href = `./p/${encodeURIComponent(product.slug || product.id)}`;
 
   renderGallery(product);
   modal.classList.add("show");
