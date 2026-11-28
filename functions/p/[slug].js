@@ -100,7 +100,10 @@ ${image ? `<meta name="twitter:image" content="${esc(image)}" />` : ""}
   p.desc { font-size:1rem; line-height:1.9; color:#334155; white-space:pre-line; margin:0 0 18px; }
   ul.features { margin:0 0 22px; padding-inline-start:20px; color:#334155; line-height:1.9; }
   .btn { display:inline-flex; align-items:center; gap:10px; background:#25d366; color:#fff; text-decoration:none; font-weight:800; padding:14px 26px; border-radius:40px; box-shadow:0 10px 24px rgba(37,211,102,.28); }
-  .btn.alt { background:var(--ink); color:#edd8b3; box-shadow:none; margin-inline-start:10px; }
+  .cta { display:flex; flex-direction:column; gap:12px; margin-top:6px; }
+  .cta .btn { width:100%; justify-content:center; padding:16px 22px; font-size:1rem; }
+  .cta .btn.alt { margin-inline-start:0; }
+  @media (min-width:761px){ .cta { flex-direction:row; } .cta .btn { flex:1 1 0; width:auto; } }
   footer { text-align:center; color:#7b8794; font-size:.8rem; padding:24px 0 40px; }
 </style>
 </head>
@@ -120,8 +123,10 @@ ${image ? `<meta name="twitter:image" content="${esc(image)}" />` : ""}
     <div class="price">${price} <small>ج.م</small></div>
     ${p.description ? `<p class="desc">${esc(p.description)}</p>` : ""}
     ${features.length ? `<ul class="features">${features.map((f) => `<li>${esc(f)}</li>`).join("")}</ul>` : ""}
-    <a class="btn" href="https://wa.me/${WA}?text=${waText}" target="_blank" rel="noopener">اطلب عبر واتساب</a>
-    <a class="btn alt" href="/#products">تصفح باقي المنتجات</a>
+    <div class="cta">
+      <a class="btn" href="https://wa.me/${WA}?text=${waText}" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+      <a class="btn alt" href="/#products">تصفح باقي المنتجات</a>
+    </div>
   </div>
 </main>
 <footer>Shop from Dubai — منتجات أصلية من دبي</footer>
