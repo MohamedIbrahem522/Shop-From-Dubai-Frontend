@@ -72,6 +72,8 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
 
 // ===== State & Cache =====
 let allProducts = [];
+let currentCategory = "الكل";
+let searchTerm = "";
 const container = document.getElementById("productsContainer");
 const loader = document.getElementById("loaderContainer");
 const CACHE_KEY = "sfd_cache_v3";
@@ -125,7 +127,7 @@ const modalClose = document.querySelector(".modal-close");
   const cache = getCache();
   if (cache) {
     allProducts = cache.products || [];
-    renderProducts(allProducts);
+    applyFilters();
     renderCategories(cache.categories);
     renderTestimonials(cache.reviews);
     loader.classList.remove("active");
@@ -177,7 +179,7 @@ const modalClose = document.querySelector(".modal-close");
       .filter((p) => p.active);
 
     setCache({ products: allProducts, categories: cats, reviews });
-    renderProducts(allProducts);
+    applyFilters();
     renderCategories(cats);
     renderTestimonials(reviews);
   } catch (err) {
@@ -205,12 +207,8 @@ function renderCategories(cats) {
         .querySelectorAll("button")
         .forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-      if (btn.dataset.category === "الكل") return renderProducts(allProducts);
-      renderProducts(
-        allProducts.filter(
-          (p) => p.category?.trim() === btn.dataset.category.trim(),
-        ),
-      );
+      currentCategory = btn.dataset.category;
+      applyFilters();
     });
   });
 }
@@ -268,7 +266,7 @@ document.addEventListener("visibilitychange", () => {
       }));
       if (fresh.length) {
         allProducts = fresh;
-        renderProducts(allProducts);
+        applyFilters();
       }
 
       const reviews = (await rRes.json()).reviews || [];
@@ -291,8 +289,63 @@ document.addEventListener("visibilitychange", () => {
     });
 });
 
+// ===== Search & Filters =====
+function normalizeAr(text) {
+  return String(text || "")
+    .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "")
+    .replace(/[\u0623\u0625\u0622]/g, "\u0627")
+    .replace(/\u0649/g, "\u064A")
+    .replace(/\u0629/g, "\u0647")
+    .replace(/\u0624/g, "\u0648")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function applyFilters() {
+  const term = normalizeAr(searchTerm);
+  const cat = String(currentCategory || "الكل").trim();
+  let list = allProducts;
+  if (cat !== "الكل") {
+    list = list.filter((p) => String(p.category || "").trim() === cat);
+  }
+  if (term) {
+    const words = term.split(" ").filter(Boolean);
+    list = list.filter((p) => {
+      const hay = normalizeAr(`${p.name} ${p.category || ""} ${p.description || ""}`);
+      return words.every((w) => hay.includes(w));
+    });
+  }
+  renderProducts(list);
+}
+
+(function initSearch() {
+  const input = document.getElementById("productSearch");
+  const clearBtn = document.getElementById("productSearchClear");
+  if (!input) return;
+  input.addEventListener("input", () => {
+    searchTerm = input.value;
+    input.closest(".product-search")?.classList.toggle("has-value", !!input.value);
+    applyFilters();
+  });
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      input.value = "";
+      searchTerm = "";
+      input.closest(".product-search")?.classList.remove("has-value");
+      applyFilters();
+      input.focus();
+    });
+  }
+})();
+
 // ===== Render Products =====
 function renderProducts(products) {
+  if (!products.length) {
+    container.innerHTML =
+      '<p class="products-empty">لا توجد منتجات مطابقة لبحثك. جرّب كلمة أخرى.</p>';
+    return;
+  }
   container.innerHTML = products
     .map(
       (p) => `
