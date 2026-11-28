@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Shop from Dubai - منتجات أصلية من دبي توصيلها لباب بيتك في مصر: أدوات مطبخ، ديكور، عطور وأكثر." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Shop from Dubai" />
+    <meta property="og:title" content="Shop from Dubai - منتجات أصلية من دبي" />
+    <meta property="og:description" content="منتجات أصلية من دبي توصيلها لباب بيتك في مصر: أدوات مطبخ، ديكور، عطور وأكثر." />
+    <meta property="og:image" content="https://res.cloudinary.com/dw92smdvr/image/upload/w_1200,c_limit/v1783881500/products/zfuuoh2eapvz9xkbi4lj.png" />
+    <meta property="og:url" content="https://shop-from-dubai-frontend.pages.dev/" />
+    <meta property="og:locale" content="ar_EG" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://shop-from-dubai-frontend.pages.dev/" />
     <title>Shop from Dubai</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="apple-touch-icon" href="favicon.png" />
@@ -151,7 +161,7 @@
         <button data-category="عطور">عطور</button>
         <button data-category="أدوات حمام">أدوات حمام</button>
         <button data-category="أدوات تنظيف">أدوات تنظيف</button>
-        <button data-category="Bath and Body Works">Bath &amp; Body</button>
+        <button data-category="العناية بالجسم">العناية بالجسم</button>
         <button data-category="بخور ومباخر">بخور ومباخر</button>
       </div>
 
@@ -202,6 +212,9 @@
               <span id="modalPrice">0</span>
               <span class="modal-currency">ج.م</span>
             </div>
+            <a id="modalProductLink" target="_blank" class="modal-product-link">
+              <i class="fas fa-link"></i> صفحة المنتج ولينك المشاركة
+            </a>
             <a id="modalWhatsapp" target="_blank" class="btn-whatsapp">
               <i class="fab fa-whatsapp"></i> شراء عبر واتساب
             </a>
@@ -304,7 +317,7 @@
 
         <div class="about-stats" data-aos="fade-up">
           <div class="stat">
-            <span class="stat-num">+50</span>
+            <span class="stat-num" id="statProducts">32</span>
             <span class="stat-label">منتج متنوع</span>
           </div>
           <div class="stat">
