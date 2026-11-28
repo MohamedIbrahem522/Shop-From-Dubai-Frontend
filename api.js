@@ -75,7 +75,7 @@ class API {
 
   /* ─── Products ─── */
   getProducts() {
-    return this.request("GET", "/products");
+    return this.request("GET", "/products?limit=100");
   }
   getProduct(id) {
     return this.request("GET", `/products/${id}`);
