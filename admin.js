@@ -1047,36 +1047,3 @@ function showSettMsg(id, text, success) {
   el.className = "sett-msg" + (success ? " success" : " error");
   el.innerHTML = `<i class="fas ${success ? "fa-check-circle" : "fa-exclamation-circle"}"></i> ${text}`;
 }
-
-/* Resume a recent login after reload: token must be unexpired (server 7 days),
-   logged in within the last 12 hours, and any 401 from the API logs out. */
-const ADMIN_SESSION_MAX_MS = 12 * 60 * 60 * 1000;
-
-function showLogin() {
-  document.getElementById("adminApp").style.display = "none";
-  document.getElementById("loginOverlay").style.display = "flex";
-}
-
-window.addEventListener("sfd-auth-expired", showLogin);
-
-(function resumeSession() {
-  const token = localStorage.getItem("api_token");
-  const at = Number(localStorage.getItem("api_login_at")) || 0;
-  let valid = false;
-  try {
-    const payload = JSON.parse(
-      atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")),
-    );
-    valid =
-      payload.exp * 1000 > Date.now() &&
-      at > 0 &&
-      Date.now() - at < ADMIN_SESSION_MAX_MS;
-  } catch (_) {}
-  if (!valid) {
-    api.clearSession();
-    return;
-  }
-  document.getElementById("loginOverlay").style.display = "none";
-  document.getElementById("adminApp").style.display = "flex";
-  initApp();
-})();
