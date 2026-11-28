@@ -800,6 +800,63 @@ section {
   border-color: #0a1b2d;
 }
 
+/* Product search */
+.product-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 460px;
+  margin: -20px auto 50px;
+  padding: 6px 20px;
+  background: #fff;
+  border: 1px solid rgba(214, 179, 124, 0.35);
+  border-radius: 40px;
+  box-shadow: 0 6px 24px rgba(10, 27, 45, 0.06);
+  transition: all 0.3s ease;
+}
+.product-search:focus-within {
+  border-color: #b8935a;
+  box-shadow: 0 10px 30px rgba(184, 147, 90, 0.18);
+}
+.product-search i {
+  color: #b8935a;
+  font-size: 0.95rem;
+}
+.product-search input {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  padding: 12px 0;
+  font-family: "Tajawal", sans-serif;
+  font-size: 0.95rem;
+  color: #0a1b2d;
+}
+.product-search input::placeholder {
+  color: #9aa3ad;
+}
+.product-search .search-clear {
+  border: 0;
+  background: transparent;
+  color: #9aa3ad;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  display: none;
+}
+.product-search.has-value .search-clear {
+  display: block;
+}
+.products-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  font-family: "Tajawal", sans-serif;
+  font-size: 1rem;
+  padding: 40px 0;
+}
+
 /* Loader */
 .loader-container {
   text-align: center;
