@@ -3105,3 +3105,29 @@ tr:hover td {
     font-size: 0.9rem;
   }
 }
+
+/* ===== Mobile fix: products list alignment, bigger action buttons, clear of floating buttons ===== */
+@media (max-width: 768px) {
+  #productsTableWrap thead {
+    display: none !important;
+  }
+  .table-actions {
+    gap: 6px !important;
+  }
+  .table-actions button {
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 0.72rem !important;
+  }
+  .product-row td:nth-child(2) {
+    white-space: normal !important;
+    min-width: 0 !important;
+    line-height: 1.35 !important;
+    flex: 1 1 0 !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+  #pageContent {
+    padding-bottom: 150px !important;
+  }
+}
